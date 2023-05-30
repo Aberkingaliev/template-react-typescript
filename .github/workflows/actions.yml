@@ -1,4 +1,4 @@
-name: Testing
+name: Actions
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,10 +21,10 @@ jobs:
         node-version: 18.x
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
-    - name: Build
-      run: npm run build
+    - name: Run ESLint & StyleLint
+      run: npm run lint:all
 
     - name: Run unit tests
       run: npm run test:unit
