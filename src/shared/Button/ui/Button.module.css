@@ -12,7 +12,7 @@
 
 .button-black {
   @apply 
-  w-fit 
+  w-fit
   h-14 
 bg-slate-900 
   duration-300
