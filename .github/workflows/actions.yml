@@ -1,0 +1,5 @@
+name: Test actions
+on: [push]
+jobs: 
+    launchActions:
+        runs-on: ubuntu-latest
