@@ -9,7 +9,7 @@
     "test:unit": "vitest",
     "test:screen": "npx loki test",
     "test:screen:approve": "npx loki approve",
-    "test:screen:ci": "concurrently --kill-others \"storybook dev -p 6006 -c ./config/storybook\" \"npx loki test\"",
+    "test:screen:ci": "concurrently --kill-others -s first \"storybook dev -p 6006 -c ./config/storybook\" \"npx loki test\" \"deelay\"",
     "lint:ts": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:ts:fix": "eslint src --ext ts,tsx --fix",
     "lint:styles": "stylelint 'src/**/*.css'",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "concurrently": "^8.0.1",
+    "deelay": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
