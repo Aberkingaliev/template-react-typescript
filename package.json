@@ -9,18 +9,19 @@
     "test:unit": "vitest",
     "test:screen": "npx loki test",
     "test:screen:approve": "npx loki approve",
-    "test:screen:ci": "npx loki --requireReference --reactUri file:/storybook-static",
+    "test:screen:ci": "concurrently --kill-others \"storybook dev -p 6006 -c ./config/storybook\" \"npx loki test\"",
     "lint:ts": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:ts:fix": "eslint src --ext ts,tsx --fix",
     "lint:styles": "stylelint 'src/**/*.css'",
     "lint:styles:fix": "stylelint 'src/**/*.css' --fix",
-    "lint:all": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && npx stylelint '**/*.css'",
-    "lint:all:fix": "eslint src --ext ts,tsx --fix && npx stylelint '**/*.css' --fix",
+    "lint:all": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && npx stylelint 'src/**/*.css'",
+    "lint:all:fix": "eslint src --ext ts,tsx --fix && npx stylelint 'src/**/*.css' --fix",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
-    "build-storybook": "storybook build -c ./config/storybook"
+    "build-storybook": "storybook build -c ./config/storybook -0 ./static/storybook-static"
   },
   "dependencies": {
+    "concurrently": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -68,14 +69,14 @@
   "loki": {
     "configurations": {
       "chrome.laptop": {
-        "target": "chrome.app",
+        "target": "chrome.docker",
         "width": 1366,
         "height": 768,
         "deviceScaleFactor": 1,
         "mobile": false
       },
       "chrome.iphone7": {
-        "target": "chrome.app",
+        "target": "chrome.docker",
         "preset": "iPhone 7"
       }
     }
